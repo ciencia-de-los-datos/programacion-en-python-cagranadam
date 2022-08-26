@@ -21,7 +21,7 @@ def pregunta_01():
     214
 
     """
-    return
+    return 212
 
 
 def pregunta_02():
@@ -39,7 +39,7 @@ def pregunta_02():
     ]
 
     """
-    return
+    return 78
 
 
 def pregunta_03():
@@ -57,7 +57,7 @@ def pregunta_03():
     ]
 
     """
-    return
+    return 89
 
 
 def pregunta_04():
@@ -82,7 +82,7 @@ def pregunta_04():
     ]
 
     """
-    return
+    return 90
 
 
 def pregunta_05():
@@ -100,7 +100,7 @@ def pregunta_05():
     ]
 
     """
-    return
+    return 67
 
 
 def pregunta_06():
@@ -125,7 +125,7 @@ def pregunta_06():
     ]
 
     """
-    return
+    return 56
 
 
 def pregunta_07():
@@ -149,7 +149,7 @@ def pregunta_07():
     ]
 
     """
-    return
+    return 56
 
 
 def pregunta_08():
@@ -174,7 +174,7 @@ def pregunta_08():
     ]
 
     """
-    return
+    return 67
 
 
 def pregunta_09():
@@ -197,7 +197,7 @@ def pregunta_09():
     }
 
     """
-    return
+    return 67
 
 
 def pregunta_10():
@@ -218,7 +218,7 @@ def pregunta_10():
 
 
     """
-    return
+    return 674
 
 
 def pregunta_11():
@@ -239,7 +239,7 @@ def pregunta_11():
 
 
     """
-    return
+    return 345
 
 
 def pregunta_12():
@@ -257,4 +257,4 @@ def pregunta_12():
     }
 
     """
-    return
+    return 234
