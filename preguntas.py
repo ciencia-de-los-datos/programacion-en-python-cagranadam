@@ -11,7 +11,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-
+from collections import Counter
 
 def pregunta_01():
     """
@@ -21,6 +21,10 @@ def pregunta_01():
     214
 
     """
+    data_tuple = [str(x[0]) for x in data_list]
+    data_tuple
+    sorted(Counter(data_tuple).most_common())
+
     return 212
 
 
