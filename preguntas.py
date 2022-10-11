@@ -150,8 +150,8 @@ def pregunta_05():
         data = [row.split(",") for row in data]
         data = [row[0:2] for row in data]
         data = [(row[0], int(row[1])) for row in data] 
-        rta =[(k, max([y for (x,y) in data if x == k]), min([y for (x,y) in data if x == k])) for k in dict(data).keys()]
-        rta_5= rta.sort(reverse=False)
+        rta_5 =[(k, max([y for (x,y) in data if x == k]), min([y for (x,y) in data if x == k])) for k in dict(data).keys()]
+        rta_5.sort(reverse=False)
     return rta_5
 
 
