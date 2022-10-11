@@ -20,8 +20,14 @@ def pregunta_01():
     214
 
     """
-
-    return 212
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+        data = [line.replace("\n", "") for line in data]
+        data_list = [line.split("\t") for line in data]
+        data_con = [int(x[1]) for x in data_list]
+        rta_1= sum(data_con)
+    
+    return rta_1
 
 
 def pregunta_02():
@@ -39,7 +45,15 @@ def pregunta_02():
     ]
 
     """
-    return 78
+    from collections import Counter
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+        data = [line.replace("\n", "") for line in data]
+        data_list = [line.split("\t") for line in data]
+        data_tuple = [str(x[0]) for x in data_list]
+        rta_2= sorted(Counter(data_tuple).most_common())
+    return rta_2
+
 
 
 def pregunta_03():
@@ -57,7 +71,22 @@ def pregunta_03():
     ]
 
     """
-    return 89
+
+    from itertools import groupby
+    from operator import itemgetter
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+        data = [line.replace("\n", "") for line in data]
+        data_list = [line.split("\t") for line in data]
+        data_2 = [str(x[0:3]) for x in data]
+        data_3 = [line.split("\t") for line in data_2]
+        data_4 = [[x, int(n)] for x, n in data_3]
+
+    summary_list = []
+    for name, group in groupby(sorted(data_4), key=itemgetter(0)): 
+       summary_list.append([name, sum(item[1] for item in group)])
+    rta_3 = [tuple(l) for l in summary_list]
+    return rta_3
 
 
 def pregunta_04():
@@ -82,7 +111,20 @@ def pregunta_04():
     ]
 
     """
-    return 90
+    from collections import Counter 
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+        data = [line.replace("\n", "") for line in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        data = [row[2] for row in data]
+        data = [row.split("-") for row in data]
+        data = [row[1] for row in data] 
+        rta = Counter(data)
+        rta_4 = list(rta.items())
+        rta_4.sort(reverse = False)
+    return rta_4
+
 
 
 def pregunta_05():
@@ -100,7 +142,17 @@ def pregunta_05():
     ]
 
     """
-    return 67
+
+    with open("data.csv", "r") as file:
+        data = file.readlines()  
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        data = [row[0:2] for row in data]
+        data = [(row[0], int(row[1])) for row in data] 
+        rta =[(k, max([y for (x,y) in data if x == k]), min([y for (x,y) in data if x == k])) for k in dict(data).keys()]
+        rta_5= rta.sort(reverse=False)
+    return rta_5
 
 
 def pregunta_06():
@@ -125,7 +177,30 @@ def pregunta_06():
     ]
 
     """
-    return 56
+
+    with open("data.csv", "r") as file:
+        data = file.readlines()  
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        data = [row[3:] for row in data]
+        
+        col5 = []
+        for index, element in enumerate (data):
+            list5 = []
+            for indice, fila in enumerate (element):
+                if len(fila) > 1:
+                    list5.append(fila)
+            col5.append(list5)
+        
+        lista = []
+        for index, element in enumerate (col5):
+            lista.extend(element)
+        
+        lista = [(row[:3], int(row[4:])) for row in lista]
+        rta_6 =[(k, min([y for (x,y) in lista if x == k]), max([y for (x,y) in lista if x == k])) for k in dict(lista).keys()]
+        rta_6.sort(reverse = False) 
+    return rta_6
 
 
 def pregunta_07():
@@ -149,7 +224,25 @@ def pregunta_07():
     ]
 
     """
-    return 56
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        data = [row[0:2] for row in data]
+        data = [(int(row[1]), row[0]) for row in data] 
+        
+        counter = {}
+        for key, value in data:
+            if key in counter:       
+                counter[key] += [value]
+            else:
+                counter[key] = [value]
+        
+        rta_7 = [(key, counter[key]) for key in counter]
+        rta_7.sort(reverse = False)
+    return rta_7
+
 
 
 def pregunta_08():
@@ -174,8 +267,27 @@ def pregunta_08():
     ]
 
     """
-    return 67
 
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]   
+        data = [row[0:2] for row in data]
+        data = [(int(row[1]), row[0]) for row in data] 
+        
+        counter = {}
+        for key, value in data:
+            if key in counter:       
+                counter[key] += [value]
+            else:
+                counter[key] = [value]
+        
+        rta_8 = [(key, counter[key]) for key in counter]
+        rta_8 = [(row[0], list(set(row[1]))) for row in rta_8] 
+        rta_8 = [(row[0], sorted(row[1])) for row in rta_8]     
+        rta_8.sort(reverse = False)
+    return rta_8
 
 def pregunta_09():
     """
@@ -197,7 +309,44 @@ def pregunta_09():
     }
 
     """
-    return 67
+
+    with open("data.csv", "r") as file:
+        data = file.readlines()        
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        data = [row[3:] for row in data]
+        
+        col5 = []
+        for index, element in enumerate (data):
+            list5 = []
+            for indice, fila in enumerate (element):
+                if len(fila) > 1:
+                    list5.append(fila)
+            col5.append(list5)
+        
+            lista = []
+            for index, element in enumerate (col5):
+                lista.extend(element)
+            
+            #lista = [(row[:3], int(row[4:])) for row in lista]
+            lista = [row.replace(":", ",") for row in lista]    
+            lista = [row.split(',') for row in lista]  
+            lista = [(row[0], (int(row[1]))) for row in lista] 
+
+            counter = {}
+            for key, value in lista:
+                    if key in counter:       
+                        counter[key] += 1
+                    else:
+                        counter[key] = 1
+
+            rta = list(counter.items())
+            rta.sort(reverse = False)
+            rta_9 = dict (rta)
+    return rta_9
+
+
 
 
 def pregunta_10():
@@ -218,7 +367,35 @@ def pregunta_10():
 
 
     """
-    return 674
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        col1 = [row[0] for row in data]  
+        data = [row[3:] for row in data]
+
+        col4 = []
+        colm5 = []
+        for index, element in enumerate (data):
+            lista4 = []
+            lista5 = []
+            for indice, fila in enumerate (element):
+                if len(fila) > 1:
+                    lista5.append(fila)
+                if len(fila) == 1:
+                    lista4.append(fila)
+            col4.append(lista4)
+            colm5.append(lista5)
+        
+        col4 = [len(row) for row in col4]  
+        colm5 = [len(row) for row in colm5]
+
+        rta_10 =[]
+        for index, element in enumerate (col1):
+            rta_10.append((str(element), col4[index], colm5[index]))
+
+    return rta_10
 
 
 def pregunta_11():
@@ -239,7 +416,40 @@ def pregunta_11():
 
 
     """
-    return 345
+    with open("data.csv", "r") as file:
+        data = file.readlines()        
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        col2 = [row[1] for row in data]  
+        data = [row[3:] for row in data]
+
+        col4 = []
+        for index, element in enumerate (data):
+            lista4 = []
+            for indice, fila in enumerate (element):
+                if len(fila) == 1:
+                    lista4.append(fila)
+            col4.append(lista4)
+
+        lista = []
+        for index, element in enumerate (col4):
+            lista.extend(element)
+
+        clave = set(lista)
+        clave = sorted(clave)
+
+        rta_11 = {}
+        for ind_clave, elem_clave in enumerate (clave): 
+            for ind_c4, elem_c4 in enumerate(col4):
+                if elem_clave in elem_c4:
+                    if elem_clave in rta_11:
+                        rta_11[elem_clave] += int(col2[ind_c4])
+                    else: 
+                        rta_11[elem_clave] = int(col2[ind_c4])
+
+    return rta_11
+
 
 
 def pregunta_12():
@@ -257,4 +467,38 @@ def pregunta_12():
     }
 
     """
-    return 234
+    with open("data.csv", "r") as file:
+        data = file.readlines()        
+        data = [row.replace("\n", "") for row in data]
+        data = [row.replace("\t", ",") for row in data]
+        data = [row.split(",") for row in data]
+        col1= [row[0] for row in data]  
+        data = [row[3:] for row in data]
+
+        col5 = []
+        for index, element in enumerate (data):
+            lista5 = []
+            for indice, fila in enumerate (element):
+                if len(fila) > 1:
+                    lista5.append(fila)
+            col5.append(lista5)
+
+        count_col5 = [[int(e[4:]) for e in row] for row in col5]
+        count_col5 = [sum(row) for row in count_col5] 
+
+        lista =[]
+        for index, element in enumerate (col1):
+            lista.append((str(element), count_col5[index]))
+                    
+        rta_12 = {}
+        for key, value in lista:
+            if key in rta_12:       
+                rta_12[key] += value
+            else:
+                rta_12[key] = value        
+            
+        rta_12 = list(rta_12.items())
+        rta_12.sort(reverse = False)
+        rta_12 = dict (rta_12)
+
+    return rta_12
